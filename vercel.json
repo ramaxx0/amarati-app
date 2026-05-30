@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install",
-  "buildCommand": "prisma generate && node scripts/ensure-building-columns.mjs && node scripts/ensure-user-columns.mjs && next build",
+  "buildCommand": "prisma generate && next build",
   "regions": ["sin1"]
 }
