@@ -18,13 +18,29 @@ function unquoteOuter(s: string): string {
   return t;
 }
 
+/** Supabase Transaction pooler (6543) + Prisma يحتاج pgbouncer=true وإلا 42P05 prepared statement. */
+function ensureSupabasePoolerParams(url: string): string {
+  try {
+    const u = new URL(url.replace(/^postgres:/, "postgresql:"));
+    if (u.hostname.includes("pooler.supabase.com") && u.port === "6543") {
+      if (!u.searchParams.has("pgbouncer")) u.searchParams.set("pgbouncer", "true");
+      if (!u.searchParams.has("connection_limit")) u.searchParams.set("connection_limit", "1");
+    }
+    if (!u.searchParams.has("sslmode")) u.searchParams.set("sslmode", "require");
+    return u.toString().replace(/^postgresql:/, "postgres:");
+  } catch {
+    return url;
+  }
+}
+
 function syncDatabaseEnv(): void {
   if (typeof window !== "undefined") return;
 
-  const dbClean =
+  const dbClean = ensureSupabasePoolerParams(
     unquoteOuter(process.env.DATABASE_URL ?? "") ||
-    trim(process.env.POSTGRES_PRISMA_URL) ||
-    trim(process.env.POSTGRES_URL);
+      trim(process.env.POSTGRES_PRISMA_URL) ||
+      trim(process.env.POSTGRES_URL),
+  );
   if (dbClean) process.env.DATABASE_URL = dbClean;
 
   const dirClean =
