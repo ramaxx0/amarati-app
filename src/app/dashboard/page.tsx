@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { joinBuildingPublicCodeAction } from "@/actions/building";
 import { BuildingQuickWidgets } from "@/components/BuildingQuickWidgets";
 import { getMyMembership } from "@/lib/access";
 import { getCurrentUser } from "@/lib/current-user";
@@ -69,24 +68,7 @@ export default async function DashboardPage({
               locale={locale}
             />
           ) : null
-        ) : (
-          <Card title={t.joinCard} className="mx-auto max-w-lg">
-            <p className="mb-3 text-sm text-muted">{t.joinHint}</p>
-            <form action={joinBuildingPublicCodeAction} className="space-y-3">
-              <div>
-                <label className="mb-1 block text-xs text-muted">{t.inviteCode}</label>
-                <Input name="inviteCode" dir="ltr" className="text-left uppercase" required />
-              </div>
-              <div>
-                <label className="mb-1 block text-xs text-muted">{t.unitNumber}</label>
-                <Input name="unitLabel" required />
-              </div>
-              <Button type="submit" className="w-full">
-                {t.joinSubmit}
-              </Button>
-            </form>
-          </Card>
-        )}
+        ) : null}
       </PageShell>
     </div>
   );
