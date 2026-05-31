@@ -174,7 +174,7 @@ export async function supervisorMonthlyScore(buildingId: string) {
   const summary =
     n === 0
       ? "لا توجد طلبات صيانة مسجّلة في هذا الشهر؛ تُعتمد درجة الأساس المرجعية."
-      : `يُحتسب السكّور اعتمادًا على ${n} طلبًا مسجلًا هذا الشهر (من دون اعتماد حقل حالة كل طلب).`;
+      : `يُحتسب السكّور اعتمادًا على ${n} طلبًا مسجلًا هذا الشهر.`;
   await prisma.buildingHealthScore.upsert({
     where: {
       buildingId_month: { buildingId, month: monthKey() },
