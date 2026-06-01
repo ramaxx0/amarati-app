@@ -36,7 +36,7 @@ export default async function VotesPage({
     include: { options: true, ballots: true, maintenanceRequest: true },
   });
   const isCreator = building.creatorId === user.id;
-  const canManage = isCreator || membership.isSupervisor;
+  const canManage =  membership.isSupervisor;
 
   const supervisorVotes = votes.filter((x) => x.type === "SUPERVISOR");
   const maintenanceCompanyVotes = votes.filter(
