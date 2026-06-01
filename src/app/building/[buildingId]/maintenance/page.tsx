@@ -140,7 +140,7 @@ export default async function MaintenancePage({
                     }}
                   >
                     <p className="font-semibold" style={{ color: "var(--accent)" }}>
-                      {m.aiTag} · {m.analysis}
+                      {m.aiTag} 
                     </p>
                     <p className="mt-1 whitespace-pre-line">{r.aiSummary}</p>
                     {r.aiSuggestions ? (
