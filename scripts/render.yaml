@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: maintenance-ml-server
+    runtime: python
+    rootDir: scripts
+    buildCommand: pip install -r requirements-ml.txt
+    startCommand: python maintenance_ml_server.py
+    envVars:
+      - key: PORT
+        value: 8080
