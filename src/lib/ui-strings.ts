@@ -3,11 +3,11 @@ import type { AppLocale } from "./locale";
 /** نصوص الواجهة — عند اختيار EN يُستعمل الفرع الإنجليزي بالكامل حيث طُبّق. */
 const AR = {
   landing: {
-    nameAr: "عماراتي",
+    nameAr: "عَمارتي",
     tagline: "إدارة المباني الذكية",
     login: "تسجيل الدخول",
     register: "إنشاء حساب",
-    logoAlt: "عماراتي",
+    logoAlt: "عَمارتي",
   },
   login: {
     title: "تسجيل الدخول",
